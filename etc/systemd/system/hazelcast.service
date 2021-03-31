@@ -1,0 +1,14 @@
+[Unit]
+Description=Hazelcast IMDG
+After=syslog.target network.target
+Before=httpd.service
+
+[Service]
+EnvironmentFile=-/etc/hazelcast/hazelcast.conf
+User=hazelcast
+PIDFile=/var/run/hazelcast/hazelcast.pid
+ExecStart=/opt/hazelcast/bin/start.sh
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
