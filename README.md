@@ -13,7 +13,7 @@ Clone this repo
 git clone https://github.com/kwart/hazelcast-linux-service.git
 ```
 
-Run following them as the `root` (`sudo su`)
+Run following commands as the `root` (`sudo su`)
 
 ```bash
 cd hazelcast-linux-service
