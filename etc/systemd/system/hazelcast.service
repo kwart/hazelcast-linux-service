@@ -7,8 +7,9 @@ Before=httpd.service
 EnvironmentFile=-/etc/hazelcast/hazelcast.conf
 User=hazelcast
 PIDFile=/var/run/hazelcast/hazelcast.pid
-ExecStart=/opt/hazelcast/bin/start.sh
+ExecStart=java $JAVA_OPTS -cp /opt/hazelcast/lib/* com.hazelcast.core.server.StartServer
 StandardOutput=journal
+SuccessExitStatus=143 SIGTERM
 
 [Install]
 WantedBy=multi-user.target

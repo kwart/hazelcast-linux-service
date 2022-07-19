@@ -8,14 +8,13 @@ Install the Hazelcast as a Linux (systemd) service.
 
 ## How?
 
-Clone this repo
-```bash
-git clone https://github.com/kwart/hazelcast-linux-service.git
-```
+Prerequisities: `wget curl unzip git rsync java-1.8.0`
 
 Run following commands as the `root` (`sudo su`)
 
 ```bash
+# Clone this repo (and proper 3.12.z branch)
+git clone -b 3.12.z https://github.com/kwart/hazelcast-linux-service.git
 cd hazelcast-linux-service
 
 # Create the hazelcast user/group
@@ -23,7 +22,7 @@ groupadd -r hazelcast
 useradd -r -g hazelcast -d /opt/hazelcast -s /sbin/nologin hazelcast
 
 # Install Hazelcast
-HAZELCAST_VERSION=4.2.5
+HAZELCAST_VERSION=3.12.12
 wget https://github.com/hazelcast/hazelcast/releases/download/v$HAZELCAST_VERSION/hazelcast-$HAZELCAST_VERSION.zip
 unzip hazelcast-$HAZELCAST_VERSION.zip -d /opt
 ln -s /opt/hazelcast-$HAZELCAST_VERSION /opt/hazelcast
@@ -34,6 +33,7 @@ chown -R hazelcast:hazelcast /opt/hazelcast /opt/hazelcast-$HAZELCAST_VERSION
 rsync -r etc/ /etc
 
 # Start and enable service
+systemctl daemon-reload
 systemctl start hazelcast.service
 systemctl enable hazelcast.service
 ```
